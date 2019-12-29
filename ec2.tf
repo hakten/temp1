@@ -1,5 +1,5 @@
 resource "aws_instance" "web" {
-  ami           = "ami-0b2d8d1abb76a53d8"
+  ami           = "ami-074e2d6769f445be5"
   instance_type = "t2.micro"
   key_name = aws_key_pair.deployer.key_name
   subnet_id     = aws_subnet.main.id
