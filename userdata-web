@@ -12,6 +12,4 @@
 "sudo cp -a wordpress/* /var/www/html"
 "sudo cp wp-config-sample.php wp-config.php"
 "sudo chown -R apache:apache /var/www/html"
-"sudo sed -i 's/SELINUX=enforcing/SELINUX=disabled/g' /etc/selinux/config"
-"sudo setenforce 0"
 "sudo systemctl restart httpd"
