@@ -3,7 +3,7 @@ resource "aws_subnet" "dev1" {
   cidr_block = "10.0.1.0/24" 
   count = 3
 
-  tags { 
+  tags = { 
     Environment = "${var.Environment}${count.index +1 }" 
   } 
 } 
