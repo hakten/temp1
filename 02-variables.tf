@@ -43,6 +43,3 @@ variable "ami-centos-7" {
 variable "Environment" { 
 default = "Dev" 
 } 
-variable "count" { 
-default = "3" 
-} 
