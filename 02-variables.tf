@@ -40,3 +40,9 @@ variable "ami-centos-7" {
     "us-west-1" = "ami-074e2d6769f445be5"
   }
 }
+variable "Environment" { 
+default = "Dev" 
+} 
+variable "count" { 
+default = "3" 
+} 

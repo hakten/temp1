@@ -1,15 +1,10 @@
-resource "aws_subnet" "pub-${count.index}" {
-  count                   = 2
-  vpc_id                  = aws_vpc.vpc.id
-  cidr_block              = var.pub-cidr[${count.index}]
-  map_public_ip_on_launch = true
-  availability_zone = var.az[${count.index}]
-  tags = {
-    Name = "pub-${count.index}"
-  }
-}
-
-
+resource "aws_subnet" "dev1" { 
+  vpc_id = "${aws_vpc.dev.id}" 
+  cidr_block = "10.0.1.0/24" 
+  tags { 
+    Environment = "${var.Environment}${count.index +1 }" 
+  } 
+} 
 
 # resource "aws_subnet" "pub-1" {
 #   vpc_id                  = aws_vpc.vpc.id
