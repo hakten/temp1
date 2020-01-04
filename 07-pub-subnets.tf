@@ -2,10 +2,6 @@ resource "aws_subnet" "dev1" {
   vpc_id = "${aws_vpc.vpc.id}" 
   cidr_block = "10.0.1.0/24" 
   count = 3
-
-  tags = { 
-    Environment = "${var.Environment}${count.index +1 }" 
-  } 
 } 
 
 # resource "aws_subnet" "pub-1" {
