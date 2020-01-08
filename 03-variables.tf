@@ -1,5 +1,5 @@
 variable "region" {
-  default = "us-east-2"
+  default = "us-east-1"
 }
 
 variable "vpc-cidr-block" {
@@ -7,19 +7,19 @@ variable "vpc-cidr-block" {
 }
 
 variable "vpc-name" {
-  default = "Terraform-VPC"
+  default = "TerraformVPC"
 }
 
 variable "pub-cidr" {
-  default = ["192.168.1.0/24","192.168.2.0/24","192.168.3.0/24"]
+  default = ["10.0.1.0/24","10.0.2.0/24","10.0.3.0/24"]
 }
 
 variable "priv-cidr" {
-  default = ["192.168.11.0/24","192.168.12.0/24","192.168.13.0/24"]
+  default = ["10.0.11.0/24","10.0.12.0/24","10.0.13.0/24"]
 }
 
 variable "az" {
-  default = ["us-east-2a","us-east-2b","us-east-2c"]
+  default = ["us-east-1a","us-east-1b","us-east-1c"]
 }
 
 variable "instance_type" {
@@ -30,6 +30,7 @@ variable "ami-amazon-linux-2" {
   default = {
     "us-east-1" = "ami-00068cd7555f543d5"
     "us-east-2" = "ami-0dacb0c129b49f529"
+    "us-west-1" = "ami-0b2d8d1abb76a53d8"
   }
 }
 
@@ -40,6 +41,3 @@ variable "ami-centos-7" {
     "us-west-1" = "ami-074e2d6769f445be5"
   }
 }
-variable "Environment" { 
-default = "Dev" 
-} 
