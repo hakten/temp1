@@ -1,8 +1,6 @@
 module "vpc_example_simple-vpc" {
-  source  = "terraform-aws-modules/vpc/aws//examples/simple-vpc"
+  source  = "github.com/terraform-aws-modules/terraform-aws-vpc/tree/v2.21.0/examples/simple-vpc"
   version = "2.21.0"
-  region = "us-west-1"
-
 }
 
 
