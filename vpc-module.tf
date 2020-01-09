@@ -1,5 +1,5 @@
 module "vpc" {
-  source = "https://github.com/hakten/terraform-resources/vpc-module"
+  source = "git::https://github.com/hakten/terraform-resources.git"
 
 cidr            = "10.0.0.0/16"
 name            = "Wordpress"
