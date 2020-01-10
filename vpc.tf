@@ -32,63 +32,63 @@ resource "aws_subnet" "private_subnets" {
   }
 }
 
-resource "aws_internet_gateway" "igw" {
-  vpc_id = "${aws_vpc.vpc.id}"
+# resource "aws_internet_gateway" "igw" {
+#   vpc_id = "${aws_vpc.vpc.id}"
 
-  tags = {
-    Name = "${var.environment}-Internet_Gateway"
-  }
-}
+#   tags = {
+#     Name = "${var.environment}-Internet_Gateway"
+#   }
+# }
 
-resource "aws_route_table" "public_route_table" {
-  vpc_id = "${aws_vpc.vpc.id}"
+# resource "aws_route_table" "public_route_table" {
+#   vpc_id = "${aws_vpc.vpc.id}"
 
-  route {
-    cidr_block  = "0.0.0.0/0"
-    gateway_id  = "${aws_internet_gateway.igw.id}"
-  }
-    tags = {
-    Name = "${var.environment}-Public_Route_Table"
-  }
-}
+#   route {
+#     cidr_block  = "0.0.0.0/0"
+#     gateway_id  = "${aws_internet_gateway.igw.id}"
+#   }
+#     tags = {
+#     Name = "${var.environment}-Public_Route_Table"
+#   }
+# }
 
-resource "aws_route_table_association" "public_route_table_association" {
-  route_table_id = "${aws_route_table.public_route_table.id}"
-  subnet_id      = "${aws_subnet.public_subnets[count.index].id}"
-  count          = "${length(var.azs)}"
-}
+# resource "aws_route_table_association" "public_route_table_association" {
+#   route_table_id = "${aws_route_table.public_route_table.id}"
+#   subnet_id      = "${aws_subnet.public_subnets[count.index].id}"
+#   count          = "${length(var.azs)}"
+# }
 
-resource "aws_eip" "eip" {
-  vpc      = true
+# resource "aws_eip" "eip" {
+#   vpc      = true
 
-  tags = {
-    Name = "${var.environment}-Elastic_IP"
-  }
-}
+#   tags = {
+#     Name = "${var.environment}-Elastic_IP"
+#   }
+# }
 
-resource "aws_nat_gateway" "nat" {
-  subnet_id     = "${aws_subnet.public_subnets[0].id}"
-  allocation_id = "${aws_eip.eip.id}"
+# resource "aws_nat_gateway" "nat" {
+#   subnet_id     = "${aws_subnet.public_subnets[0].id}"
+#   allocation_id = "${aws_eip.eip.id}"
 
-  tags = {
-    Name = "${var.environment}-Nat_Gateway"
-  }
-}
+#   tags = {
+#     Name = "${var.environment}-Nat_Gateway"
+#   }
+# }
 
-resource "aws_route_table" "private_route_table" {
-  vpc_id = "${aws_vpc.vpc.id}"
+# resource "aws_route_table" "private_route_table" {
+#   vpc_id = "${aws_vpc.vpc.id}"
 
-  route {
-    cidr_block     = "0.0.0.0/0"
-    nat_gateway_id = "${aws_nat_gateway.nat.id}"
-  }
-    tags = {
-    Name = "${var.environment}-Private_Route_Table"
-  }
-}
+#   route {
+#     cidr_block     = "0.0.0.0/0"
+#     nat_gateway_id = "${aws_nat_gateway.nat.id}"
+#   }
+#     tags = {
+#     Name = "${var.environment}-Private_Route_Table"
+#   }
+# }
 
-resource "aws_route_table_association" "private_route_table_association" {
-  route_table_id = "${aws_route_table.private_route_table.id}"
-  subnet_id      = "${aws_subnet.private_subnets[count.index].id}"
-  count          = "${length(var.azs)}"
-}
+# resource "aws_route_table_association" "private_route_table_association" {
+#   route_table_id = "${aws_route_table.private_route_table.id}"
+#   subnet_id      = "${aws_subnet.private_subnets[count.index].id}"
+#   count          = "${length(var.azs)}"
+# }
