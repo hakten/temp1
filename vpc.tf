@@ -12,7 +12,7 @@ resource "aws_subnet" "public_subnets" {
   vpc_id                  = "${aws_vpc.vpc.id}"
   count                   = "${length(var.azs)}"
   availability_zone       = "${var.azs[count.index]}"
-  cidr_block              = "${element(var.public_subnets,count.index)}"
+  cidr_block              = "${var.public_subnets[count.index]}"
   map_public_ip_on_launch = true
   
   tags = {
