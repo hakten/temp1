@@ -74,19 +74,20 @@ resource "aws_nat_gateway" "nat" {
   
 
   tags = {
-    Name = "${var.environment}-Nat_Gateway"
+    Name = "${var.environment}-Nat_Gateway-${count.index}"
   }
 }
 
 resource "aws_route_table" "private_route_table" {
-  vpc_id = "${aws_vpc.vpc.id}"
+  count      = "${length(var.azs)}"
+  vpc_id     = "${aws_vpc.vpc.id}"
 
   route {
     cidr_block     = "0.0.0.0/0"
-    nat_gateway_id = "${aws_nat_gateway.nat.id}"
+    nat_gateway_id = "${element(aws_nat_gateway.nat.*.id,count.index)}"
   }
     tags = {
-    Name = "${var.environment}-Private_Route_Table"
+    Name = "${var.environment}-Private_Route_Table-${count.index+1}"
   }
 }
 
