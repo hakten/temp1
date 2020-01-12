@@ -12,7 +12,7 @@ resource "aws_subnet" "public_subnets" {
   vpc_id                  = "${aws_vpc.vpc.id}"
   count                   = "${length(var.public_subnets)}"
   availability_zone       = "${element(var.azs,count.index)}"
-  cidr_block              = "${var.public_subnets.*.count.index}"
+  cidr_block              = "${var.public_subnets[count.index]}"
   map_public_ip_on_launch = true
   
   tags = {
@@ -24,7 +24,7 @@ resource "aws_subnet" "private_subnets" {
   vpc_id                  = "${aws_vpc.vpc.id}"
   count                   = "${length(var.private_subnets)}"
   availability_zone       = "${element(var.azs,count.index)}"
-  cidr_block              = "${var.private_subnets.*.count.index}"
+  cidr_block              = "${var.private_subnets[count.index]"
   map_public_ip_on_launch = false
   
   tags = {
@@ -54,7 +54,7 @@ resource "aws_route_table" "public_route_table" {
 
 resource "aws_route_table_association" "public_route_table_association" {
   route_table_id = "${aws_route_table.public_route_table.id}"
-  subnet_id      = "${var.public_subnets.*.id.count.index}"
+  subnet_id      = "${element(var.public_subnets.*.id,count.index}"
   count          = "${length(var.public_subnets)}"
 }
 
