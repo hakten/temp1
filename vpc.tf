@@ -59,6 +59,7 @@ resource "aws_route_table_association" "public_route_table_association" {
 }
 
 resource "aws_eip" "eip" {
+  count    = "${length(var.azs)}"
   vpc      = true
 
   tags = {
@@ -67,8 +68,10 @@ resource "aws_eip" "eip" {
 }
 
 resource "aws_nat_gateway" "nat" {
-  subnet_id     = "${aws_subnet.public_subnets.0.id}"
-  allocation_id = "${aws_eip.eip.id}"
+  count         = "${length(var.azs)}"
+  subnet_id     = "${element(aws_subnet.public_subnets.*.id,count.index)}"
+  allocation_id = "${element(aws_eip.eip.*.id,count.index)}"
+  
 
   tags = {
     Name = "${var.environment}-Nat_Gateway"
