@@ -1,9 +1,16 @@
 variable "cidr" {}
 variable "name" {}
 variable "environment" {}
-variable "azs" {}
-variable "public_subnets" {}
-variable "private_subnets" {}
+
+variable "azs" {
+  type  = list
+}
+variable "public_subnets" {
+    type = list
+}
+variable "private_subnets" {
+    type = list
+}
 
 
 
