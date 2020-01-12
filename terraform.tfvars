@@ -1,5 +1,5 @@
 cidr            = "10.0.0.0/16"
-name            = "Wordpress"
+project         = "Wordpress"
 environment     = "Test"
 
 azs             = ["us-east-1a","us-east-1b","us-east-1c"]

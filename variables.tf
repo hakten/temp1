@@ -1,5 +1,5 @@
 variable "cidr" {}
-variable "name" {}
+variable "project" {}
 variable "environment" {}
 
 variable "azs" {
