@@ -10,8 +10,8 @@ resource "aws_vpc" "vpc" {
 
 resource "aws_subnet" "public_subnets" {
   vpc_id                  = "${aws_vpc.vpc.id}"
-  count                   = "${length(var.azs)}"
-  availability_zone       = "${var.azs[count.index]}"
+  count                   = "${length(var.public_subnets)}"
+  availability_zone       = "${element(var.azs,count.index)}"
   cidr_block              = "${var.public_subnets[count.index]}"
   map_public_ip_on_launch = true
   
@@ -22,8 +22,8 @@ resource "aws_subnet" "public_subnets" {
 
 resource "aws_subnet" "private_subnets" {
   vpc_id                  = "${aws_vpc.vpc.id}"
-  count                   = "${length(var.azs)}"
-  availability_zone       = "${var.azs[count.index]}"
+  count                   = "${length(var.private_subnets)}"
+  availability_zone       = "${element(var.azs,count.index)}"
   cidr_block              = "${var.private_subnets[count.index]}"
   map_public_ip_on_launch = false
   
@@ -54,7 +54,7 @@ resource "aws_route_table" "public_route_table" {
 
 resource "aws_route_table_association" "public_route_table_association" {
   route_table_id = "${aws_route_table.public_route_table.id}"
-  subnet_id      = "${element(var.public_subnets,count.index)}.id"
+  subnet_id      = "${element(var.public_subnets,count.index).id}"
   count          = "${length(var.azs)}"
 }
 
