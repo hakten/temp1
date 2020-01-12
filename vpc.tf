@@ -52,11 +52,11 @@ resource "aws_route_table" "public_route_table" {
   }
 }
 
-resource "aws_route_table_association" "public_route_table_association" {
-  route_table_id = "${aws_route_table.public_route_table.id}"
-  subnet_id      = "${element(var.public_subnets.*.id,count.index}"
-  count          = "${length(var.public_subnets)}"
-}
+# resource "aws_route_table_association" "public_route_table_association" {
+#   route_table_id = "${aws_route_table.public_route_table.id}"
+#   subnet_id      = "${element(var.public_subnets.*.id,count.index}"
+#   count          = "${length(var.public_subnets)}"
+# }
 
 # resource "aws_eip" "eip" {
 #   vpc      = true
