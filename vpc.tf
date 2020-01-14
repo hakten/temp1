@@ -67,47 +67,47 @@ resource "aws_route_table_association" "public_route_table_association" {
   count          = "${length(var.public_subnets)}"
 }
 
-resource "aws_eip" "eip" {
-  count          = "${length(var.azs)}"
-  vpc            = true
+# resource "aws_eip" "eip" {
+#   count          = "${length(var.azs)}"
+#   vpc            = true
 
-  tags = {
-    Name          = "${var.environment}-${var.project}-Elastic_IP-${count.index+1}"
-    Environment   = "${var.environment}"
-    Project       = "${var.project}"
-  }
-}
+#   tags = {
+#     Name          = "${var.environment}-${var.project}-Elastic_IP-${count.index+1}"
+#     Environment   = "${var.environment}"
+#     Project       = "${var.project}"
+#   }
+# }
 
-resource "aws_nat_gateway" "nat" {
-  count           = "${length(var.azs)}"
-  subnet_id       = "${element(aws_subnet.public_subnets.*.id,count.index)}"
-  allocation_id   = "${element(aws_eip.eip.*.id,count.index)}"
+# resource "aws_nat_gateway" "nat" {
+#   count           = "${length(var.azs)}"
+#   subnet_id       = "${element(aws_subnet.public_subnets.*.id,count.index)}"
+#   allocation_id   = "${element(aws_eip.eip.*.id,count.index)}"
   
 
-  tags = {
-    Name          = "${var.environment}-${var.project}-Nat_Gateway-${count.index+1}"
-    Environment   = "${var.environment}"
-    Project       = "${var.project}"
-  }
-}
+#   tags = {
+#     Name          = "${var.environment}-${var.project}-Nat_Gateway-${count.index+1}"
+#     Environment   = "${var.environment}"
+#     Project       = "${var.project}"
+#   }
+# }
 
-resource "aws_route_table" "private_route_table" {
-  count           = "${length(var.azs)}"
-  vpc_id          = "${aws_vpc.main.id}"
+# resource "aws_route_table" "private_route_table" {
+#   count           = "${length(var.azs)}"
+#   vpc_id          = "${aws_vpc.main.id}"
 
-  route {
-    cidr_block       = "0.0.0.0/0"
-    nat_gateway_id   = "${element(aws_nat_gateway.nat.*.id,count.index)}"
-  }
-    tags = {
-    Name             = "${var.environment}-${var.project}-Private_Route_Table-${count.index+1}"
-    Environment      = "${var.environment}"
-    Project          = "${var.project}"
-  }
-}
+#   route {
+#     cidr_block       = "0.0.0.0/0"
+#     nat_gateway_id   = "${element(aws_nat_gateway.nat.*.id,count.index)}"
+#   }
+#     tags = {
+#     Name             = "${var.environment}-${var.project}-Private_Route_Table-${count.index+1}"
+#     Environment      = "${var.environment}"
+#     Project          = "${var.project}"
+#   }
+# }
 
-resource "aws_route_table_association" "private_route_table_association" {
-  count            = "${length(var.private_subnets)}"
-  route_table_id   = "${element(aws_route_table.private_route_table.*.id,count.index)}"
-  subnet_id        = "${element(aws_subnet.private_subnets.*.id,count.index)}"
-}
+# resource "aws_route_table_association" "private_route_table_association" {
+#   count            = "${length(var.private_subnets)}"
+#   route_table_id   = "${element(aws_route_table.private_route_table.*.id,count.index)}"
+#   subnet_id        = "${element(aws_subnet.private_subnets.*.id,count.index)}"
+# }
