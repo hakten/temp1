@@ -1,3 +1,8 @@
+provider "aws" {
+  region = "us-east-1"
+}
+
+
 resource "aws_vpc_peering_connection" "foo" {
   peer_owner_id = "${data.aws_caller_identity.current}"
   peer_vpc_id   = "${aws_vpc.bar.id}"
