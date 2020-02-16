@@ -45,7 +45,7 @@ data "aws_ami" "centos" {
 
 resource "aws_instance" "bastion" {
   instance_type          = "t2.micro"
-  ami                    = data.aws_ami.centos
+  ami                    = [data.aws_ami.centos]
   key_name               = aws_key_pair.deployer.key_name
   vpc_security_group_ids = [aws_security_group.tomcat.id]
   
