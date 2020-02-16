@@ -88,7 +88,6 @@ resource "aws_instance" "tomcat" {
         "sudo chmod 775 /opt/apache-tomcat-8.5.51/bin/startup.sh &&",
         "sudo sleep 10 &&",
         "sudo /opt/apache-tomcat-8.5.51/bin/startup.sh",
-        "sudo sleep 10 &&"
         
         ]
       } 
