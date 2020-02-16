@@ -68,10 +68,10 @@ resource "aws_instance" "tomcat" {
 
   provisioner "remote-exec" {
     connection {
-      host        = self.public_ip
+      host        = "${self.public_ip}"
       type        = "ssh"
       user        = "centos"
-      private_key = file("~/.ssh/id_rsa")
+      private_key = "${file("~/.ssh/id_rsa")}"
       }
       inline = [
         "sudo yum install java-1.8* -y &&",
