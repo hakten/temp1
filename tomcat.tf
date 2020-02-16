@@ -64,7 +64,7 @@ resource "aws_instance" "tomcat" {
       user        = "centos"
       private_key = "${file("~/.ssh/id_rsa")}"
     }
-
+  }
 
   provisioner "remote-exec" {
     connection {
@@ -81,5 +81,5 @@ resource "aws_instance" "tomcat" {
         "sudo ln -s /opt/apache-tomcat-8.5.51/bin/startup.sh /usr/local/bin/tomcatup && sudo ln -s /opt/apache-tomcat-8.5.51/bin/shutdown.sh /usr/local/bin/tomcatdown",
         ]
       } 
-   }
+   
 }
