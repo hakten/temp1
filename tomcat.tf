@@ -74,7 +74,7 @@ resource "aws_instance" "tomcat" {
       private_key = file("~/.ssh/id_rsa")
       }
       inline = [
-        "sudo yum install java-1.8* &&",
+        "sudo yum install java-1.8* -y &&",
         "echo JAVA_HOME=`find /usr/lib/jvm/java-1.8* | head -n 3|tail -n1` >> ~/.bash_profile",
         "cd /opt && sudo yum install wget -y &&",
         "sudo wget -P /opt https://downloads.apache.org/tomcat/tomcat-8/v8.5.51/bin/apache-tomcat-8.5.51.tar.gz &&",
