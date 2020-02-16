@@ -1,9 +1,9 @@
 provider "aws" {
-  region = var.region
+  region = "${var.region}"
 }
 
 resource "aws_key_pair" "deployer" { 
-  public_key = file("~/.ssh/id_rsa.pub")
+  public_key = "${file("~/.ssh/id_rsa.pub")}"
 } 
 
 resource "aws_security_group" "tomcat" { 
@@ -11,7 +11,7 @@ resource "aws_security_group" "tomcat" {
 
   ingress { 
     from_port   = 22 
-    to_port     = 22 
+    to_port     = 22
     protocol    = "tcp" 
     cidr_blocks = ["0.0.0.0/0"]   
 
@@ -45,8 +45,8 @@ data "aws_ami" "centos" {
 
 resource "aws_instance" "tomcat" {
   instance_type          = "t2.micro"
-  ami                    = data.aws_ami.centos.id
-  key_name               = aws_key_pair.deployer.key_name
+  ami                    = "${data.aws_ami.centos.id}"
+  key_name               = "${aws_key_pair.deployer.key_name}"
   vpc_security_group_ids = [aws_security_group.tomcat.id]
   
   
