@@ -54,6 +54,18 @@ resource "aws_instance" "tomcat" {
     Name = "Apache Tomcat"
   }
 
+  provisioner "file" {
+    source      = "tomcat/"
+    destination = "/tmp"
+
+    connection {
+      host        = "${self.public_ip}"
+      type        = "ssh"
+      user        = "centos"
+      private_key = "${file("~/.ssh/id_rsa")}"
+    }
+
+
   provisioner "remote-exec" {
     connection {
       host        = self.public_ip
@@ -70,37 +82,4 @@ resource "aws_instance" "tomcat" {
         ]
       } 
 
-  provisioner "file" {
-    source      = "context.xml"
-    destination = "/tomcat/webapps/manager/META-INF/context.xml"
-
-    connection {
-      host        = "${self.public_ip}"
-      type        = "ssh"
-      user        = "centos"
-      private_key = "${file("~/.ssh/id_rsa")}"
-    }
   }
-  provisioner "file" {
-    source      = "context.xml"
-    destination = "/tomcat/webapps/host-manager/META-INF/context.xml"
-
-    connection {
-      host        = "${self.public_ip}"
-      type        = "ssh"
-      user        = "centos"
-      private_key = "${file("~/.ssh/id_rsa")}"
-    }
-  }
-  provisioner "file" {
-    source      = "tomcat-users.xml"
-    destination = "/tomcat/conf/tomcat-users.xml"
-
-    connection {
-      host        = "${self.public_ip}"
-      type        = "ssh"
-      user        = "centos"
-      private_key = "${file("~/.ssh/id_rsa")}"
-    }
-  }
-}
