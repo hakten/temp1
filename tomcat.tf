@@ -75,7 +75,7 @@ resource "aws_instance" "tomcat" {
       }
       inline = [
         "sudo yum install java-1.8* &&",
-        "echo JAVA_HOME=`find /usr/lib/jvm/java-1.8* | head -n 3|tail -n1` >> ~/.bash_profile"
+        "echo JAVA_HOME=`find /usr/lib/jvm/java-1.8* | head -n 3|tail -n1` >> ~/.bash_profile",
         "cd /opt && sudo yum install wget -y &&",
         "sudo wget -P /opt https://downloads.apache.org/tomcat/tomcat-8/v8.5.51/bin/apache-tomcat-8.5.51.tar.gz &&",
         "sudo tar -xvzf /opt/apache-tomcat-8.5.51.tar.gz &&",
