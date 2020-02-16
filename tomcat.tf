@@ -47,7 +47,7 @@ resource "aws_instance" "tomcat" {
   instance_type          = "t2.micro"
   ami                    = "${data.aws_ami.centos.id}"
   key_name               = "${aws_key_pair.deployer.key_name}"
-  security_groups        = ["aws_security_group.tomcat"]
+  security_groups        = ["aws_security_group.tomcat.name"]
   
   
   tags = {
