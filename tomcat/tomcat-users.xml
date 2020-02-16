@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-  /tomcat/conf/tomcat-users.xml
+  /opt/apache-tomcat-8.5.51/conf/tomcat-users.xml
 
   Licensed to the Apache Software Foundation (ASF) under one or more
   contributor license agreements.  See the NOTICE file distributed with

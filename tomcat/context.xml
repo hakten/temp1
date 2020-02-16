@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-  /tomcat/webapps/manager/META-INF/context.xml
-  /tomcat/webapps/host-manager/META-INF/context.xml
+  /opt/apache-tomcat-8.5.51/webapps/manager/META-INF/context.xml
+  /opt/apache-tomcat-8.5.51/webapps/host-manager/META-INF/context.xml
 
   Licensed to the Apache Software Foundation (ASF) under one or more
   contributor license agreements.  See the NOTICE file distributed with

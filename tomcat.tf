@@ -74,11 +74,17 @@ resource "aws_instance" "tomcat" {
       private_key = file("~/.ssh/id_rsa")
       }
       inline = [
+        "sudo yum install java-1.8* &&",
+        "echo JAVA_HOME=`find /usr/lib/jvm/java-1.8* | head -n 3|tail -n1` >> ~/.bash_profile"
         "cd /opt && sudo yum install wget -y &&",
         "sudo wget -P /opt https://downloads.apache.org/tomcat/tomcat-8/v8.5.51/bin/apache-tomcat-8.5.51.tar.gz &&",
         "sudo tar -xvzf /opt/apache-tomcat-8.5.51.tar.gz &&",
         "sudo chmod +x /opt/apache-tomcat-8.5.51/bin/startup.sh && sudo chmod +x /opt/apache-tomcat-8.5.51/bin/shutdown.sh",
-        "sudo ln -s /opt/apache-tomcat-8.5.51/bin/startup.sh /usr/local/bin/tomcatup && sudo ln -s /opt/apache-tomcat-8.5.51/bin/shutdown.sh /usr/local/bin/tomcatdown",
+        "sudo mv -f /tmp/context.xml /opt/apache-tomcat-8.5.51/webapps/manager/META-INF/context.xml",
+        "sudo mv -f /tmp/context.xml /opt/apache-tomcat-8.5.51/webapps/host-manager/META-INF/context.xml",
+        "sudo mv -f /tmp/tomcat-users.xml /opt/apache-tomcat-8.5.51/conf/tomcat-users.xml",
+        "sudo /opt/apache-tomcat-8.5.51/bin/startup.sh"
+        
         ]
       } 
    
