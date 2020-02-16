@@ -85,10 +85,7 @@ resource "aws_instance" "tomcat" {
         "sudo rm -f /tmp/context.xml &&",
         "sudo rm -f /tmp/tomcat-users.xml &&",
         "sudo chmod 775 /opt/apache-tomcat-8.5.51/bin/shutdown.sh &&",
-        "sudo chmod 775 /opt/apache-tomcat-8.5.51/bin/startup.sh &&",
-        "sudo /opt/apache-tomcat-8.5.51/bin/shutdown.sh &&",
-        "sudo /opt/apache-tomcat-8.5.51/bin/startup.sh",
-        "sudo sleep 10 &&",
+        "sudo chmod 775 /opt/apache-tomcat-8.5.51/bin/startup.sh &&"
         
         ]
       } 
