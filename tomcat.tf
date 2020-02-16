@@ -101,7 +101,8 @@ resource "aws_instance" "tomcat" {
       private_key = file("~/.ssh/id_rsa")
       }
       inline = [
-        "sudo /opt/apache-tomcat-8.5.51/bin/startup.sh"
+        "sudo /opt/apache-tomcat-8.5.51/bin/startup.sh",
+        "sleep 10"
       ]
       }
    
