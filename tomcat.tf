@@ -63,7 +63,7 @@ resource "aws_instance" "tomcat" {
       }
       inline = [
         "cd /opt && sudo yum install wget -y &&",
-        "sudo wget https://downloads.apache.org/tomcat/tomcat-8/v8.5.51/bin/apache-tomcat-8.5.51.tar.gz &&",
+        "sudo wget -P /opt https://downloads.apache.org/tomcat/tomcat-8/v8.5.51/bin/apache-tomcat-8.5.51.tar.gz &&",
         "sudo tar -xvzf /opt/apache-tomcat-8.5.51.tar.gz &&",
         "sudo chmod +x /opt/apache-tomcat-8.5.51/bin/startup.sh && sudo chmod +x /opt/apache-tomcat-8.5.51/bin/shutdown.sh",
         "sudo ln -s /opt/apache-tomcat-8.5.51/bin/startup.sh /usr/local/bin/tomcatup && sudo ln -s /opt/apache-tomcat-8.5.51/bin/shutdown.sh /usr/local/bin/tomcatdown",
@@ -93,7 +93,7 @@ resource "aws_instance" "tomcat" {
     }
   }
   provisioner "file" {
-    source      = "tomcat-users.cml"
+    source      = "tomcat-users.xml"
     destination = "/tomcat/conf/tomcat-users.xml"
 
     connection {
