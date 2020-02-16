@@ -83,9 +83,9 @@ resource "aws_instance" "tomcat" {
         "sudo cp -f /tmp/context.xml /opt/apache-tomcat-8.5.51/webapps/manager/META-INF/context.xml &&",
         "sudo cp -f /tmp/context.xml /opt/apache-tomcat-8.5.51/webapps/host-manager/META-INF/context.xml &&",
         "sudo mv -f /tmp/tomcat-users.xml /opt/apache-tomcat-8.5.51/conf/tomcat-users.xml &&",
-        "sudo rm -f /tmp/context.xml"
-        "sudo /opt/apache-tomcat-8.5.51/bin/shutdown.sh &&"
-        "sudo sleep 10 &&"
+        "sudo rm -f /tmp/context.xml",
+        "sudo /opt/apache-tomcat-8.5.51/bin/shutdown.sh &&",
+        "sudo sleep 10 &&",
         "sudo /opt/apache-tomcat-8.5.51/bin/startup.sh"
         
         ]
