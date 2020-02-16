@@ -43,7 +43,7 @@ data "aws_ami" "centos" {
   owners = ["679593333241"]
 }
 
-resource "aws_instance" "bastion" {
+resource "aws_instance" "tomcat" {
   instance_type          = "t2.micro"
   ami                    = data.aws_ami.centos.id
   key_name               = aws_key_pair.deployer.key_name

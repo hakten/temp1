@@ -1,3 +1,3 @@
 output "server-ip" {
-  value = aws_instance.public_ip
+  value = aws_instance.tomcat.public_ip
 }
