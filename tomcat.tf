@@ -59,7 +59,7 @@ resource "aws_instance" "bastion" {
       host        = self.public_ip
       type        = "ssh"
       user        = "centos"
-      private_key = file(var.ssh_key_location)
+      private_key = file("~/.ssh/id_rsa")
       }
       inline = [
         "sudo mkdir /opt; cd /opt",
@@ -78,7 +78,7 @@ resource "aws_instance" "bastion" {
       host        = "${self.public_ip}"
       type        = "ssh"
       user        = "centos"
-      private_key = "${file(var.ssh_key_location)}"
+      private_key = "${file("~/.ssh/id_rsa")}"
     }
   }
   provisioner "file" {
@@ -89,7 +89,7 @@ resource "aws_instance" "bastion" {
       host        = "${self.public_ip}"
       type        = "ssh"
       user        = "centos"
-      private_key = "${file(var.ssh_key_location)}"
+      private_key = "${file("~/.ssh/id_rsa")}"
     }
   }
   provisioner "file" {
@@ -100,7 +100,7 @@ resource "aws_instance" "bastion" {
       host        = "${self.public_ip}"
       type        = "ssh"
       user        = "${var.user}"
-      private_key = "${file(var.ssh_key_location)}"
+      private_key = "${file("~/.ssh/id_rsa")}"
     }
   }
 }
