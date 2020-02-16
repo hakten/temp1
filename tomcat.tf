@@ -99,7 +99,7 @@ resource "aws_instance" "bastion" {
     connection {
       host        = "${self.public_ip}"
       type        = "ssh"
-      user        = "${var.user}"
+      user        = "centos"
       private_key = "${file("~/.ssh/id_rsa")}"
     }
   }
