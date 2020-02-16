@@ -62,7 +62,7 @@ resource "aws_instance" "tomcat" {
       private_key = file("~/.ssh/id_rsa")
       }
       inline = [
-        "cd /opt",
+        "cd /opt && yum install wget -y",
         "sudo wget http://mirrors.fibergrid.in/apache/tomcat/tomcat-8/v8.5.35/bin/apache-tomcat-8.5.35.tar.gz",
         "sudo tar -xvzf /opt/apache-tomcat-8.5.35.tar.gz",
         "sudo chmod +x /opt/apache-tomcat-8.5.35/bin/startup.sh && sudo chmod +x /opt/apache-tomcat-8.5.35/bin/shutdown.sh",
