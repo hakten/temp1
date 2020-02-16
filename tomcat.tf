@@ -63,10 +63,10 @@ resource "aws_instance" "tomcat" {
       }
       inline = [
         "sudo cd /opt && sudo yum install wget -y",
-        "sudo wget http://mirrors.fibergrid.in/apache/tomcat/tomcat-8/v8.5.35/bin/apache-tomcat-8.5.35.tar.gz",
-        "sudo tar -xvzf /opt/apache-tomcat-8.5.35.tar.gz",
-        "sudo chmod +x /opt/apache-tomcat-8.5.35/bin/startup.sh && sudo chmod +x /opt/apache-tomcat-8.5.35/bin/shutdown.sh",
-        "sudo ln -s /opt/apache-tomcat-8.5.35/bin/startup.sh /usr/local/bin/tomcatup && sudo ln -s /opt/apache-tomcat-8.5.35/bin/shutdown.sh /usr/local/bin/tomcatdown",
+        "sudo wget https://downloads.apache.org/tomcat/tomcat-8/v8.5.51/bin/apache-tomcat-8.5.51.tar.gz",
+        "sudo tar -xvzf /opt/apache-tomcat-8.5.51.tar.gz",
+        "sudo chmod +x /opt/apache-tomcat-8.5.51/bin/startup.sh && sudo chmod +x /opt/apache-tomcat-8.5.51/bin/shutdown.sh",
+        "sudo ln -s /opt/apache-tomcat-8.5.51/bin/startup.sh /usr/local/bin/tomcatup && sudo ln -s /opt/apache-tomcat-8.5.51/bin/shutdown.sh /usr/local/bin/tomcatdown",
         ]
       } 
 
